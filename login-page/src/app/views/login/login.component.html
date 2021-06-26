@@ -1,0 +1,72 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <h1>會員登入</h1>
+    </mat-card-header>
+
+    <form class="example-form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width" floatLabel="never">
+          <input matInput name="accountName" [formControl]="accFormControl" [type]="hideAccount ? 'password' : 'text'"
+            placeholder="請輸入帳號">
+          <button type="button" mat-icon-button matSuffix (click)="hideAccount = !hideAccount"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideAccount">
+            <mat-icon>{{hideAccount ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <button type="button" mat-icon-button matSuffix href="javascript:void(0)" (click)="openDialog(2)">
+            <mat-icon>info</mat-icon>
+          </button>
+          <mat-error *ngIf="accFormControl.hasError('required')">
+            <strong>必填欄位</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" floatLabel="never">
+          <input matInput [formControl]="userIdFormControl" [type]="hideUserName ? 'password' : 'text'"
+            placeholder="請輸入使用者名稱">
+          <button type="button" mat-icon-button matSuffix (click)="hideUserName = !hideUserName"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideUserName">
+            <mat-icon>{{hideUserName ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <button type="button" mat-icon-button matSuffix href="javascript:void(0)" (click)="openDialog(3)">
+            <mat-icon>info</mat-icon>
+          </button>
+          <mat-error
+            *ngIf=" userIdFormControl.hasError('required') ||userIdFormControl.hasError('minlength')||userIdFormControl.hasError('maxlength')">
+            <strong>請輸入6-20碼英數符號</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" floatLabel="never">
+          <input matInput [formControl]="pwFormControl" [type]="hideUserName ? 'password' : 'text'" placeholder="請輸入密碼">
+          <mat-error
+            *ngIf=" pwFormControl.hasError('required') ||pwFormControl.hasError('minlength')||pwFormControl.hasError('maxlength')">
+            <strong>請輸入8-12碼英數符號</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <div fxFlexFill="row">
+          <div fxFlex="50">
+            <mat-checkbox class="example-margin" [checked]="isCheckedRemAccount" [disabled]="accFormControl.value===''"
+              (change)="checkRemAccount(isCheckedRemAccount)">記住登入帳號</mat-checkbox>
+          </div>
+          <div fxFlex="50">
+            <p class="right">設定簡易登入<mat-icon>arrow_right</mat-icon>
+            </p>
+
+          </div>
+        </div>
+      </mat-card-content>
+      <button mat-stroked-button color="primary" class="btn-block" (click)="login()">登入</button>
+      <button mat-stroked-button class="btn-block" disabled>我要設定使用者名稱</button>
+      <div fxFlexFill="row">
+        <div fxFlex="50">
+          <p class="left">我要註冊<mat-icon>arrow_right</mat-icon></p>
+        </div>
+        <div fxFlex="50">
+          <p class="right">忘記使用者名稱或密碼<mat-icon>arrow_right</mat-icon></p>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

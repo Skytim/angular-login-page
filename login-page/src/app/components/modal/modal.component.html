@@ -1,0 +1,25 @@
+<h3 mat-dialog-title style="margin-top: 5%;" class="center">{{data.title}}</h3>
+<div mat-dialog-content style="margin: 5%;text-align: center;">
+  {{data.message}}
+</div>
+<div [ngSwitch]="data.type">
+  <div *ngSwitchCase="1">
+    <div fxFlex="100" href="javascript:void(0)" (click)="close()" style="margin: revert;">
+      <p style="margin: revert;" class="center" href="javascript:void(0)">關閉</p>
+    </div>
+
+  </div>
+  <div *ngSwitchCase="2">
+    <div fxFlex="100" class="primary" (click)="close()" style="margin: revert;">
+      <p style="margin: revert;" class=" white-text center close-button">關閉</p>
+    </div>
+  </div>
+  <div *ngSwitchCase="3">
+    <div fxFlex="50" class="cancel" (click)="closeFirstLogin()" style="margin: revert;">
+      <p style="margin: revert;" class="center white-text">關閉</p>
+    </div>
+    <div fxFlex="50" class="primary" routerLink="/settings" (click)="closeFirstLogin()">
+      <p style="margin: revert;" class="center white-text">前往設定</p>
+    </div>
+  </div>
+</div>
