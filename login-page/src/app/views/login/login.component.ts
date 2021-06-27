@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   isCheckedRemAccount = false;
   constructor(private _elementRef: ElementRef, private modalService: ModalService, private authService: AuthService) {
     this.accFormControl.valueChanges.subscribe(res => {
-      if(this.isCheckedRemAccount){
+      if (this.isCheckedRemAccount) {
         console.log(res);
-        localStorage.setItem('Account',Base64.encode(res))
+        localStorage.setItem('Account', Base64.encode(res))
       }
     });
   }
@@ -69,7 +69,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
   login() {
-    this.authService.login().subscribe(respon => {
+    let acc = this._elementRef.nativeElement.querySelector('.acc').getAttribute('originalVal');
+    this.authService.login(acc, this.userIdFormControl.value, this.pwFormControl.value).subscribe((res: any) => {
+      /// Redirect to main
+      if (res['po_Login_19_2'].ReturnCode === 0) {
+
+
+      } else if (res['po_Login_19_2'].ReturnCode === -11) {
+
+        this.modalService.openResDialog(res['po_Login_19_2'].ReturnMessageTitle, res['po_Login_19_2'].ReturnMessage, 4);
+
+      } else if (res['po_Login_19_2'].ReturnCode === -14) {
+
+        this.modalService.openResDialog(res['po_Login_19_2'].ReturnMessageTitle, res['po_Login_19_2'].ReturnMessage, 5);
+      }
+
     });
   }
 }

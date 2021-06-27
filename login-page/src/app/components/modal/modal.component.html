@@ -22,4 +22,17 @@
       <p style="margin: revert;" class="center white-text">前往設定</p>
     </div>
   </div>
+  <div *ngSwitchCase="4">
+    <div fxFlex="100" class="primary" (click)="close()" routerLink="/settingpassword" style="margin: revert;">
+      <p style="margin: revert;" class=" white-text center close-button">設定</p>
+    </div>
+  </div>
+  <div *ngSwitchCase="5">
+    <div fxFlex="50" class="cancel" (click)="close()" style="margin: revert;">
+      <p style="margin: revert;" class="center white-text">下次再換</p>
+    </div>
+    <div fxFlex="50" class="primary" (click)="close()" routerLink="/settingpassword">
+      <p style="margin: revert;" class="center white-text">密碼變更</p>
+    </div>
+  </div>
 </div>

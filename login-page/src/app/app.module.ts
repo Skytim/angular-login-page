@@ -22,6 +22,7 @@ import { LoginComponent } from './views/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AccInputDirective } from './directives/acc-input.directive';
 import { MainComponent } from './views/main/main.component';
+import { SettingPasswordComponent } from './views/setting-password/setting-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { MainComponent } from './views/main/main.component';
     SettingsComponent,
     LoginComponent,
     AccInputDirective,
-    MainComponent
+    MainComponent,
+    SettingPasswordComponent
   ],
   imports: [
     BrowserModule,

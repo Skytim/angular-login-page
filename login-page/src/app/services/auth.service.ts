@@ -1,16 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { isDevMode } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  config = '';
+  constructor(private http: HttpClient) {
+    if (isDevMode()) {
+      this.config = 'http://localhost:3000/api/login'
+    } else {
+      this.config = 'https://floating-sea-66924.herokuapp.com/';
+    }
+  }
 
-  constructor(private http: HttpClient) { }
+  login(Acc: string, UserID: string, Pw: string) {
 
-  login() {
-    let config = 'http://localhost:3000/api/login'
-    return this.http.post(config, {});
+    return this.http.post(this.config, { Acc, UserID, Pw });
   }
 
 

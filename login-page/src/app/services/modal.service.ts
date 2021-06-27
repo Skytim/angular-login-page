@@ -35,4 +35,15 @@ export class ModalService {
 
     });
   }
+  openResDialog(title: string, response: string, type: number): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '320px',
+      maxHeight: '350px',
+      data: { title, message: response, type },
+      panelClass: 'custom-dialog-container'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
 }
