@@ -8,8 +8,9 @@
     <form class="example-form">
       <mat-card-content>
         <mat-form-field class="example-full-width" floatLabel="never">
-          <input matInput name="accountName" [formControl]="accFormControl" [type]="hideAccount ? 'password' : 'text'"
-            placeholder="請輸入帳號">
+          <input matInput name="accountName" accInput [formControl]="accFormControl" class="acc"
+            [hideAccount]="hideAccount"
+            placeholder="請輸入帳號" >
           <button type="button" mat-icon-button matSuffix (click)="hideAccount = !hideAccount"
             [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideAccount">
             <mat-icon>{{hideAccount ? 'visibility_off' : 'visibility'}}</mat-icon>

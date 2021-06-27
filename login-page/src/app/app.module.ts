@@ -20,12 +20,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingsComponent } from './views/settings/settings.component';
 import { LoginComponent } from './views/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AccInputDirective } from './directives/acc-input.directive';
 @NgModule({
   declarations: [
     AppComponent,
     ModalComponent,
     SettingsComponent,
-    LoginComponent
+    LoginComponent,
+    AccInputDirective
   ],
   imports: [
     BrowserModule,
