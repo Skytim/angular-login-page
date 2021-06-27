@@ -9,8 +9,7 @@
       <mat-card-content>
         <mat-form-field class="example-full-width" floatLabel="never">
           <input matInput name="accountName" accInput [formControl]="accFormControl" class="acc"
-            [hideAccount]="hideAccount"
-            placeholder="請輸入帳號" >
+            [hideAccount]="hideAccount" placeholder="請輸入帳號">
           <button type="button" mat-icon-button matSuffix (click)="hideAccount = !hideAccount"
             [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideAccount">
             <mat-icon>{{hideAccount ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -59,13 +58,15 @@
         </div>
       </mat-card-content>
       <button mat-stroked-button color="primary" class="btn-block" (click)="login()">登入</button>
-      <button mat-stroked-button class="btn-block" disabled>我要設定使用者名稱</button>
+      <button mat-stroked-button class="btn-block" color="ca" routerLink="/settings" >我要設定使用者名稱</button>
       <div fxFlexFill="row">
         <div fxFlex="50">
-          <p class="left">我要註冊<mat-icon>arrow_right</mat-icon></p>
+          <a class="left" href="https://test.com/register" target="blink">我要註冊<mat-icon>arrow_right</mat-icon>
+          </a>
         </div>
         <div fxFlex="50">
-          <p class="right">忘記使用者名稱或密碼<mat-icon>arrow_right</mat-icon></p>
+          <p class="right">忘記使用者名稱或密碼<mat-icon>arrow_right</mat-icon>
+          </p>
         </div>
       </div>
     </form>

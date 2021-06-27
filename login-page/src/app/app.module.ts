@@ -21,13 +21,15 @@ import { SettingsComponent } from './views/settings/settings.component';
 import { LoginComponent } from './views/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AccInputDirective } from './directives/acc-input.directive';
+import { MainComponent } from './views/main/main.component';
 @NgModule({
   declarations: [
     AppComponent,
     ModalComponent,
     SettingsComponent,
     LoginComponent,
-    AccInputDirective
+    AccInputDirective,
+    MainComponent
   ],
   imports: [
     BrowserModule,
