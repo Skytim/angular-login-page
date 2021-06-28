@@ -8,10 +8,11 @@ export class AuthService {
   config = '';
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.config = 'http://localhost:3000/api/login'
+      this.config = 'http://localhost:3000/'
     } else {
       this.config = 'https://floating-sea-66924.herokuapp.com/';
     }
+    this.config += 'api/login'
   }
 
   login(Acc: string, UserID: string, Pw: string) {
