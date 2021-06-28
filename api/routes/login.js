@@ -6,15 +6,15 @@ router.post('/', function (req, res, next) {
   var ReturnCode = -99;
   var ReturnMessage = '';
   var ReturnMessageTitle = '';
-  if (req.body.Acc === 'A123456789' && req.body.UserID === 'testuserid1' && req.body.Pw === '1234abcd') {
+  if (req.query.Acc === 'A123456789' && req.query.UserID === 'testuserid1' && req.query.Pw === '1234abcd') {
     ReturnCode = 0;
   }
-  else if (req.body.Acc === 'B123456789' && req.body.UserID === 'testuserid2' && req.body.Pw === '1234abcd') {
+  else if (req.query.Acc === 'B123456789' && req.query.UserID === 'testuserid2' && req.query.Pw === '1234abcd') {
     ReturnCode = -11;
     ReturnMessage = '你需要設定新密碼';
     ReturnMessageTitle = '關於設定新密碼';
   }
-  else if (req.body.Acc === 'C123456789' && req.body.UserID === 'testuserid3' && req.body.Pw === '1234abcd') {
+  else if (req.query.Acc === 'C123456789' && req.query.UserID === 'testuserid3' && req.query.Pw === '1234abcd') {
     ReturnCode = -14
   }
 
