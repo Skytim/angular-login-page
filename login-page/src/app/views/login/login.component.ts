@@ -1,6 +1,7 @@
+import { Observable } from 'rxjs';
 import { AuthService } from './../../services/auth.service';
 import { ModalService } from './../../services/modal.service';
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Base64 } from 'js-base64';
 
@@ -15,8 +16,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   passWord = '';
   hideUserName = true;
   hideAccount = true
-  isCheckedRemAccount = false;
-  constructor(private _elementRef: ElementRef,  private modalService: ModalService, private authService: AuthService) {
+
+  constructor(private _elementRef: ElementRef, private modalService: ModalService, private authService: AuthService) {
   }
   ngAfterViewInit(): void {
 
@@ -27,12 +28,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if (localAccount) {
       let decode = Base64.decode(localAccount)
       let disPlayAcc = this.authService.disPlayAcc(decode);
-
+      this.authService.remAcc();
       this.accFormControl.setValue(disPlayAcc);
-      this.isCheckedRemAccount = true;
       this._elementRef.nativeElement.querySelector('.acc').setAttribute('originalVal', decode);
     }
-
   }
   accFormControl = new FormControl('', [
     Validators.required,
@@ -56,18 +55,24 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   checkRemAccount(event: any) {
-
-    this.isCheckedRemAccount = !this.isCheckedRemAccount;
-
-    if (!this.isCheckedRemAccount) {
-      localStorage.removeItem('Account');
+    let simpleLogin = localStorage.getItem('simpleLogin') === 'open';
+    console.log(event);
+    if (simpleLogin) {
+      this.modalService.openDialog(6);
+    } else {
+      if (event) {
+        localStorage.removeItem('Account');
+      }
     }
-
   }
 
   login() {
     let acc = this._elementRef.nativeElement.querySelector('.acc').getAttribute('originalVal');
     this.authService.login(acc, this.userIdFormControl.value, this.pwFormControl.value);
+  }
+
+  isCheckedRemAccount(): Observable<boolean> {
+    return this.authService.isRemAcc();
   }
 
 }

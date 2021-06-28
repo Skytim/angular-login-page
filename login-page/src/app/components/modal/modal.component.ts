@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -11,7 +12,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ModalComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private authService: AuthService) {
 
   }
 
@@ -24,11 +25,20 @@ export class ModalComponent implements OnInit {
 
   closeFirstLogin(): void {
     this.dialogRef.close();
-    localStorage.setItem('announce','true');
+    localStorage.setItem('announce', 'true');
   }
   settings(): void {
     this.dialogRef.close();
-    localStorage.setItem('announce','true');
+    localStorage.setItem('announce', 'true');
+  }
+
+  closeAndRemainAcc() {
+    this.authService.remAcc();
+  }
+
+  closeAndResetLogin() {
+    this.authService.unRemAcc();
+    localStorage.removeItem('simpleLogin')
   }
 
 }

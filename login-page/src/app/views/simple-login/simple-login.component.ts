@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimpleLoginComponent implements OnInit {
 
-  constructor() { }
+  isOpen = false;
+  constructor() {
+    this.isOpen = localStorage.getItem('simpleLogin') === 'open';
+  }
 
   ngOnInit(): void {
+  }
+  radioChange(event: any) {
+    console.log(event);
+    localStorage.setItem('simpleLogin', event.value)
   }
 
 }

@@ -1,1 +1,5 @@
-<p>simple-login works!</p>
+<h2>簡易登入</h2>
+<mat-radio-group aria-label="Select an option" >
+  <mat-radio-button value="close" [checked]="!isOpen" (change)="radioChange($event)">關閉</mat-radio-button>
+  <mat-radio-button value="open" [checked]="isOpen" (change)="radioChange($event)">開啟</mat-radio-button>
+</mat-radio-group>

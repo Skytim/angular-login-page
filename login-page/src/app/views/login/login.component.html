@@ -44,11 +44,11 @@
             <strong>請輸入8-12碼英數符號</strong>
           </mat-error>
         </mat-form-field>
-
         <div fxFlexFill="row">
           <div fxFlex="65">
-            <mat-checkbox class="example-margin" [checked]="isCheckedRemAccount" [disabled]="accFormControl.value===''"
-              (change)="checkRemAccount(isCheckedRemAccount)">記住登入帳號</mat-checkbox>
+            <mat-checkbox class="example-margin" [checked]="(isCheckedRemAccount()|async)||false"
+              [disabled]="accFormControl.value===''" (change)="checkRemAccount(isCheckedRemAccount)">記住登入帳號
+            </mat-checkbox>
           </div>
           <div fxFlex="35">
             <a class="right" href="javascript:void(0)" routerLink="/simplelogin">設定簡易登入<mat-icon>arrow_right</mat-icon>

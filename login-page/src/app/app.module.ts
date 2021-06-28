@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
 /* Angular Flex Layout */
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ModalComponent } from './components/modal/modal.component';
@@ -53,6 +54,7 @@ import { SimpleLoginComponent } from './views/simple-login/simple-login.componen
     MatCheckboxModule,
     MatCardModule,
     MatButtonModule,
+    MatRadioModule,
     FlexLayoutModule,
     MatDialogModule,
     BrowserAnimationsModule

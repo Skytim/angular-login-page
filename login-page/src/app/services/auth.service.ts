@@ -12,8 +12,14 @@ export class AuthService {
   config = '';
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
 
+  isResetAccSubject = new BehaviorSubject<boolean>(this.hasAcc());
+
   private hasToken(): boolean {
     return !!localStorage.getItem('token');
+  }
+
+  private hasAcc(): boolean {
+    return !!localStorage.getItem('Account');
   }
 
   constructor(private router: Router, private http: HttpClient, private modalService: ModalService) {
@@ -59,6 +65,14 @@ export class AuthService {
     this.isLoginSubject.next(false);
   }
 
+  remAcc(): void {
+    this.isResetAccSubject.next(true);
+  }
+
+  unRemAcc(): void {
+    this.isResetAccSubject.next(false);
+  }
+
   disPlayAcc(word: string) {
     let result = '';
     for (let i = 0; i < word.length; i++) {
@@ -77,4 +91,7 @@ export class AuthService {
     return this.isLoginSubject.asObservable();
   }
 
+  isRemAcc(): Observable<boolean> {
+    return this.isResetAccSubject.asObservable();
+  }
 }
