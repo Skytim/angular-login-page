@@ -7,11 +7,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'settingpassword', component: SettingPasswordComponent },
-  { path: 'main', component: MainComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent, data: { title: '會員登入' } },
+  { path: 'settings', component: SettingsComponent, data: { title: '設定使用者名稱' } },
+  { path: 'settingpassword', component: SettingPasswordComponent, data: { title: '設定新密碼' } },
+  { path: 'main', component: MainComponent, canActivate: [AuthGuard], data: { title: '系統首頁' } },
+  { path: '', redirectTo: 'login', pathMatch: 'full', data: { title: '首頁' } }
 ];
 
 @NgModule({

@@ -1,12 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { isDevMode } from '@angular/core';
+import { Router } from '@angular/router';
+import { Base64 } from 'js-base64';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ModalService } from './modal.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   config = '';
-  constructor(private http: HttpClient) {
+  isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
+
+  private hasToken(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  constructor(private router: Router, private http: HttpClient, private modalService: ModalService) {
     if (isDevMode()) {
       this.config = 'http://localhost:3000/'
     } else {
@@ -24,9 +34,28 @@ export class AuthService {
         'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
         'Access-Control-Max-Age': '86400'
       })
+    }).subscribe((res: any) => {
+      /// Redirect to main
+      if (res['po_Login_19_2'].ReturnCode === 0) {
+        localStorage.setItem('token', Base64.encode(res['po_Login_19_2'].Token));
+        this.router.navigate(['/main']);
+
+      } else if (res['po_Login_19_2'].ReturnCode === -11) {
+
+        this.modalService.openResDialog(res['po_Login_19_2'].ReturnMessageTitle, res['po_Login_19_2'].ReturnMessage, 4);
+
+      } else if (res['po_Login_19_2'].ReturnCode === -14) {
+
+        this.modalService.openResDialog(res['po_Login_19_2'].ReturnMessageTitle, res['po_Login_19_2'].ReturnMessage, 5);
+      }
+
     });
   }
 
+  logout(): void {
+    localStorage.removeItem('token');
+    this.isLoginSubject.next(false);
+  }
 
   disPlayAcc(word: string) {
     let result = '';
@@ -40,6 +69,10 @@ export class AuthService {
       }
     }
     return result;
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.isLoginSubject.asObservable();
   }
 
 }

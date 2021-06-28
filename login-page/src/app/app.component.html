@@ -1,7 +1,13 @@
 <mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+    [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
-  <span class="span" layout-align="center center">會員登入</span>
+  <mat-menu #menu="matMenu">
+    <!-- <button mat-menu-item *ngIf="!(isLoggedIn | async)">登入</button>
+    <button mat-menu-item *ngIf="(isLoggedIn | async)" (click)="logout()">登出</button>
+    <button mat-menu-item>首頁</button> -->
+  </mat-menu>
+  <span class="span" layout-align="center center">{{title}}</span>
 </mat-toolbar>
 <router-outlet></router-outlet>

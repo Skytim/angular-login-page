@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
 /* Angular Flex Layout */
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ModalComponent } from './components/modal/modal.component';
@@ -41,6 +42,7 @@ import { SettingPasswordComponent } from './views/setting-password/setting-passw
     MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
+    MatMenuModule,
     MatInputModule,
     MatFormFieldModule,
     MatGridListModule,
