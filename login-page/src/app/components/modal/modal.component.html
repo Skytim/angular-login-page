@@ -5,33 +5,33 @@
 <div [ngSwitch]="data.type">
   <div *ngSwitchCase="1">
     <div fxFlex="100" href="javascript:void(0)" (click)="close()" style="margin: revert;">
-      <p style="margin: revert;" class="center" href="javascript:void(0)">關閉</p>
+      <p style="margin: revert;" class="center link" href="javascript:void(0)">關閉</p>
     </div>
 
   </div>
   <div *ngSwitchCase="2">
-    <div fxFlex="100" class="primary" (click)="close()" style="margin: revert;">
+    <div fxFlex="100" class="primary link" (click)="close()" style="margin: revert;">
       <p style="margin: revert;" class=" white-text center close-button">關閉</p>
     </div>
   </div>
   <div *ngSwitchCase="3">
-    <div fxFlex="50" class="cancel" (click)="closeFirstLogin()" style="margin: revert;">
+    <div fxFlex="50" class="cancel link" (click)="closeFirstLogin()" style="margin: revert;">
       <p style="margin: revert;" class="center white-text">關閉</p>
     </div>
-    <div fxFlex="50" class="primary" routerLink="/settings" (click)="closeFirstLogin()">
+    <div fxFlex="50" class="primary link" routerLink="/settings" (click)="closeFirstLogin()">
       <p style="margin: revert;" class="center white-text">前往設定</p>
     </div>
   </div>
   <div *ngSwitchCase="4">
-    <div fxFlex="100" class="primary" (click)="close()" routerLink="/settingpassword" style="margin: revert;">
+    <div fxFlex="100" class="primary link" (click)="close()" routerLink="/settingpassword" style="margin: revert;">
       <p style="margin: revert;" class=" white-text center close-button">設定</p>
     </div>
   </div>
   <div *ngSwitchCase="5">
-    <div fxFlex="50" class="cancel" (click)="close()" style="margin: revert;">
+    <div fxFlex="50" class="cancel link" (click)="close()" style="margin: revert;">
       <p style="margin: revert;" class="center white-text">下次再換</p>
     </div>
-    <div fxFlex="50" class="primary" (click)="close()" routerLink="/settingpassword">
+    <div fxFlex="50" class="primary link" (click)="close()" routerLink="/settingpassword">
       <p style="margin: revert;" class="center white-text">密碼變更</p>
     </div>
   </div>

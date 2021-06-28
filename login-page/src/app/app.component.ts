@@ -43,10 +43,11 @@ export class AppComponent {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 
-  public get isLoggedIn() : Observable<boolean> {
+  isLoggedIn() : Observable<boolean> {
     return this.authService.isLoggedIn();
   }
 

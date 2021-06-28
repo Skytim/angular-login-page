@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccInputDirective } from './directives/acc-input.directive';
 import { MainComponent } from './views/main/main.component';
 import { SettingPasswordComponent } from './views/setting-password/setting-password.component';
+import { ResetComponent } from './views/reset/reset.component';
+import { SimpleLoginComponent } from './views/simple-login/simple-login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,9 @@ import { SettingPasswordComponent } from './views/setting-password/setting-passw
     LoginComponent,
     AccInputDirective,
     MainComponent,
-    SettingPasswordComponent
+    SettingPasswordComponent,
+    ResetComponent,
+    SimpleLoginComponent
   ],
   imports: [
     BrowserModule,

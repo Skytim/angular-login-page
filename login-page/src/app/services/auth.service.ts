@@ -38,7 +38,9 @@ export class AuthService {
       /// Redirect to main
       if (res['po_Login_19_2'].ReturnCode === 0) {
         localStorage.setItem('token', Base64.encode(res['po_Login_19_2'].Token));
+        localStorage.setItem('Account', Base64.encode(Acc));
         this.router.navigate(['/main']);
+        this.isLoginSubject.next(true);
 
       } else if (res['po_Login_19_2'].ReturnCode === -11) {
 

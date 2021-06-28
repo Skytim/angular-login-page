@@ -17,11 +17,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   hideAccount = true
   isCheckedRemAccount = false;
   constructor(private _elementRef: ElementRef,  private modalService: ModalService, private authService: AuthService) {
-    this.accFormControl.valueChanges.subscribe(res => {
-      if (this.isCheckedRemAccount) {
-        localStorage.setItem('Account', Base64.encode(res))
-      }
-    });
   }
   ngAfterViewInit(): void {
 
@@ -59,17 +54,20 @@ export class LoginComponent implements OnInit, AfterViewInit {
   openDialog(type: number): void {
     this.modalService.openDialog(type);
   }
+
   checkRemAccount(event: any) {
 
     this.isCheckedRemAccount = !this.isCheckedRemAccount;
-    if (this.isCheckedRemAccount) {
-      localStorage.setItem('Account', Base64.encode(this.accFormControl.value));
-    } else {
+
+    if (!this.isCheckedRemAccount) {
       localStorage.removeItem('Account');
     }
+
   }
+
   login() {
     let acc = this._elementRef.nativeElement.querySelector('.acc').getAttribute('originalVal');
     this.authService.login(acc, this.userIdFormControl.value, this.pwFormControl.value);
   }
+
 }
