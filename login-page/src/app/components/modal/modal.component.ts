@@ -38,14 +38,15 @@ export class ModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  closeAndResetLogin() {
-    this.authService.unRemAcc();
-    localStorage.removeItem('simpleLogin');
+  closeAndRemainAccColumn() {
+    this.revertAcc.emit(true);
     this.dialogRef.close();
   }
 
-  closeAndRemainAccColumn() {
-    this.revertAcc.emit(true);
+  closeAndResetLogin() {
+    this.authService.unRemAcc();
+    localStorage.removeItem('simpleLogin');
+    localStorage.removeItem('Account');
     this.dialogRef.close();
   }
 }
