@@ -39,7 +39,15 @@
     <div fxFlex="50" class="cancel link" (click)="closeAndRemainAcc()" style="margin: revert;">
       <p style="margin: revert;" class="center white-text">取消</p>
     </div>
-    <div fxFlex="50" class="primary link" (click)="closeAndResetLogin()" routerLink="/settingpassword">
+    <div fxFlex="50" class="primary link" (click)="closeAndResetLogin()">
+      <p style="margin: revert;" class="center white-text">確定</p>
+    </div>
+  </div>
+  <div *ngSwitchCase="7">
+    <div fxFlex="50" class="cancel link" (click)="closeAndRemainAccColumn()" style="margin: revert;">
+      <p style="margin: revert;" class="center white-text">取消</p>
+    </div>
+    <div fxFlex="50" class="primary link" (click)="closeAndResetLogin()">
       <p style="margin: revert;" class="center white-text">確定</p>
     </div>
   </div>

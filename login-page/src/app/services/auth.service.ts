@@ -22,6 +22,10 @@ export class AuthService {
     return !!localStorage.getItem('Account');
   }
 
+  hasSimpleLogin(): boolean {
+    return localStorage.getItem('simpleLogin') === 'open';
+  }
+
   constructor(private router: Router, private http: HttpClient, private modalService: ModalService) {
     if (isDevMode()) {
       this.config = 'http://localhost:3000/'
@@ -94,4 +98,17 @@ export class AuthService {
   isRemAcc(): Observable<boolean> {
     return this.isResetAccSubject.asObservable();
   }
+
+  isRemAccResult(): boolean {
+    return this.isResetAccSubject.getValue();
+  }
+
+  reSetAcc(accFormControl: any, elementRef: any) {
+    let localAccount = localStorage.getItem('Account');
+    let decode = Base64.decode(localAccount || '')
+    let disPlayAcc = this.disPlayAcc(decode);
+    accFormControl.setValue(disPlayAcc);
+    elementRef.nativeElement.querySelector('.acc').setAttribute('originalVal', decode);
+  }
+
 }

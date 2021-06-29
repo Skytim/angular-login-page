@@ -15,7 +15,9 @@ router.post('/', function (req, res, next) {
     ReturnMessageTitle = '關於設定新密碼';
   }
   else if (req.body.Acc === 'C123456789' && req.body.UserID === 'testuserid3' && req.body.Pw === '1234abcd') {
-    ReturnCode = -14
+    ReturnCode = -14;
+    ReturnMessage = '可以下次再換，或輸入新的密碼';
+    ReturnMessageTitle = '關於設定新密碼';
   }
 
   res.json({

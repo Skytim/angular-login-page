@@ -15,9 +15,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   userName = '';
   passWord = '';
   hideUserName = true;
-  hideAccount = true
+  hideAccount = true;
+  hidePW = true;
 
   constructor(private _elementRef: ElementRef, private modalService: ModalService, private authService: AuthService) {
+    this.accFormControl.valueChanges.subscribe(res => {
+      if (authService.isRemAccResult() && authService.hasSimpleLogin()) {
+        this.opernacc();
+      }
+    });
   }
   ngAfterViewInit(): void {
 
@@ -28,9 +34,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if (localAccount) {
       let decode = Base64.decode(localAccount)
       let disPlayAcc = this.authService.disPlayAcc(decode);
-      this.authService.remAcc();
       this.accFormControl.setValue(disPlayAcc);
       this._elementRef.nativeElement.querySelector('.acc').setAttribute('originalVal', decode);
+      this.authService.remAcc();
     }
   }
   accFormControl = new FormControl('', [
@@ -55,13 +61,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   checkRemAccount(event: any) {
-    let simpleLogin = localStorage.getItem('simpleLogin') === 'open';
-    console.log(event);
-    if (simpleLogin) {
-      this.modalService.openDialog(6);
-    } else {
-      if (event) {
-        localStorage.removeItem('Account');
+    let localAccount = localStorage.getItem('Account');
+    if (!event.checked && localAccount) {
+      let simpleLogin = localStorage.getItem('simpleLogin') === 'open';
+      this.authService.unRemAcc();
+      if (simpleLogin) {
+
+        setTimeout(() => {
+          this.authService.remAcc();
+        }, 300);
+
+        this.modalService.openDialog(6);
+      } else {
+        if (event) {
+          localStorage.removeItem('Account');
+        }
       }
     }
   }
@@ -73,6 +87,19 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   isCheckedRemAccount(): Observable<boolean> {
     return this.authService.isRemAcc();
+  }
+
+  opernacc() {
+    this.modalService.openRetAcc(6).subscribe(res => {
+      let localAccount = localStorage.getItem('Account');
+      if (localAccount) {
+        let decode = Base64.decode(localAccount)
+        let disPlayAcc = this.authService.disPlayAcc(decode);
+        this.accFormControl.setValue(disPlayAcc);
+        this._elementRef.nativeElement.querySelector('.acc').setAttribute('originalVal', decode);
+        this.authService.remAcc();
+      }
+    })
   }
 
 }

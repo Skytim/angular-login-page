@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../components/modal/modal.component';
@@ -18,6 +19,10 @@ export class ModalService {
     3: {
       title: '全面提升帳戶的使用安全', message: '自108年5月起，登入需輸入使用者名稱，請立即前往設定．若您設定過，可關閉並省略此提醒'
       , type: 3
+    },
+    6: {
+      title: '', message: '提醒您，刪除『同意保留帳號』，簡易登入設定將失效'
+      , type: 6
     }
   }
 
@@ -45,5 +50,16 @@ export class ModalService {
     dialogRef.afterClosed().subscribe(result => {
 
     });
+  }
+  openRetAcc(type: number) :Observable<any>{
+    let info = this.modelInfo[type];
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '320px',
+      maxHeight: '350px',
+      data: info,
+      panelClass: 'custom-dialog-container'
+    });
+
+    return dialogRef.componentInstance.revertAcc;
   }
 }
