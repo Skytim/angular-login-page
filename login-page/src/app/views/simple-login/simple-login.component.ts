@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,14 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class SimpleLoginComponent implements OnInit {
 
   isOpen = false;
-  constructor() {
-    this.isOpen = localStorage.getItem('simpleLogin') === 'open';
+  constructor(private authService:AuthService) {
+    this.isOpen = this.authService.hasSimpleLogin();
   }
 
   ngOnInit(): void {
   }
+
   radioChange(event: any) {
-    console.log(event);
     localStorage.setItem('simpleLogin', event.value)
   }
 

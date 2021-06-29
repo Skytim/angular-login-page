@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../components/modal/modal.component';
 
@@ -23,6 +23,11 @@ export class ModalService {
     6: {
       title: '', message: '提醒您，刪除『同意保留帳號』，簡易登入設定將失效'
       , type: 6
+    }
+    ,
+    7: {
+      title: '', message: '提醒您，刪除『同意保留帳號』，簡易登入設定將失效'
+      , type: 7
     }
   }
 
@@ -51,7 +56,7 @@ export class ModalService {
 
     });
   }
-  openRetAcc(type: number) :Observable<any>{
+  openRetAcc(type: number) {
     let info = this.modelInfo[type];
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '320px',
@@ -60,6 +65,11 @@ export class ModalService {
       panelClass: 'custom-dialog-container'
     });
 
-    return dialogRef.componentInstance.revertAcc;
+    const subscribeDialog = dialogRef.componentInstance.revertAcc;
+
+    dialogRef.afterClosed().subscribe(result => {
+      subscribeDialog.unsubscribe();
+    });
+    return subscribeDialog;
   }
 }

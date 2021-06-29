@@ -19,11 +19,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   hidePW = true;
 
   constructor(private _elementRef: ElementRef, private modalService: ModalService, private authService: AuthService) {
-    this.accFormControl.valueChanges.subscribe(res => {
-      if (authService.isRemAccResult() && authService.hasSimpleLogin()) {
-        this.opernacc();
-      }
-    });
   }
   ngAfterViewInit(): void {
 
@@ -38,6 +33,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this._elementRef.nativeElement.querySelector('.acc').setAttribute('originalVal', decode);
       this.authService.remAcc();
     }
+    this.accFormControl.valueChanges.subscribe(res => {
+      if (this.authService.isRemAccResult() && this.authService.hasSimpleLogin()) {
+        this.opernacc();
+      }
+    });
   }
   accFormControl = new FormControl('', [
     Validators.required,
@@ -90,16 +90,17 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   opernacc() {
-    this.modalService.openRetAcc(6).subscribe(res => {
-      let localAccount = localStorage.getItem('Account');
-      if (localAccount) {
-        let decode = Base64.decode(localAccount)
-        let disPlayAcc = this.authService.disPlayAcc(decode);
-        this.accFormControl.setValue(disPlayAcc);
-        this._elementRef.nativeElement.querySelector('.acc').setAttribute('originalVal', decode);
-        this.authService.remAcc();
+    this.modalService.openRetAcc(7).subscribe(res => {
+      if (res) {
+        let localAccount = localStorage.getItem('Account');
+        if (localAccount) {
+          let decode = Base64.decode(localAccount)
+          let disPlayAcc = this.authService.disPlayAcc(decode);
+          this.accFormControl.setValue(disPlayAcc, { emitEvent: false });
+          this._elementRef.nativeElement.querySelector('.acc').setAttribute('originalVal', decode);
+        }
       }
-    })
+    });
   }
 
 }

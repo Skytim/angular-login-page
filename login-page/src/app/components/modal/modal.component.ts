@@ -1,5 +1,5 @@
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit, ChangeDetectionStrategy, Inject, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Inject, Output, EventEmitter } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
@@ -10,7 +10,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit {
-  revertAcc = new EventEmitter();
+  @Output() revertAcc = new EventEmitter<boolean>();
+
   constructor(public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private authService: AuthService) {
 
@@ -45,6 +46,6 @@ export class ModalComponent implements OnInit {
 
   closeAndRemainAccColumn() {
     this.revertAcc.emit(true);
+    this.dialogRef.close();
   }
-
 }
