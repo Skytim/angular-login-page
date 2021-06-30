@@ -34,7 +34,6 @@ body {
     0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
 }
 
-
 .positronx {
   text-decoration: none;
   color: #ffffff;
@@ -103,12 +102,11 @@ body {
   margin: 0;
 }
 
-
 .login-wrapper .mat-stroked-button {
   line-height: 54px;
   margin-bottom: 10px;
   border-radius: 0px;
-  border-color: transparent
+  border-color: transparent;
 }
 
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
@@ -139,4 +137,11 @@ body {
 }
 .link {
   cursor: pointer;
+}
+.mat-icon {
+  font-size: 15px;
+}
+.form-button {
+  width: inherit !important;
+  height: inherit !important;
 }

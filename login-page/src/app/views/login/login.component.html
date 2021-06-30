@@ -5,47 +5,54 @@
     </mat-card-header>
     <form class="example-form">
       <mat-card-content>
-        <mat-form-field class="example-full-width" floatLabel="never">
-          <input matInput name="accountName" accInput [formControl]="accFormControl" class="acc"
-            [hideAccount]="hideAccount" placeholder="請輸入帳號">
-          <button type="button" mat-icon-button matSuffix (click)="hideAccount = !hideAccount"
+        <div>
+          <mat-form-field class="example-full-width" floatLabel="never" style="width: 85%;">
+            <input matInput name="accountName" accInput [formControl]="accFormControl" class="acc"
+              [hideAccount]="hideAccount" placeholder="請輸入帳號">
+            <mat-error *ngIf="accFormControl.hasError('required')">
+              <strong>必填欄位</strong>
+            </mat-error>
+          </mat-form-field>
+          <button class="form-button" type="button" mat-icon-button accInput matSuffix (click)="triggerHideAccount()"
             [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideAccount">
             <mat-icon>{{hideAccount ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <button type="button" mat-icon-button matSuffix href="javascript:void(0)" (click)="openDialog(2)">
+          <button class="form-button" type="button" mat-icon-button matSuffix href="javascript:void(0)"
+            (click)="openDialog(2)">
             <mat-icon>info</mat-icon>
           </button>
-          <mat-error *ngIf="accFormControl.hasError('required')">
-            <strong>必填欄位</strong>
-          </mat-error>
-        </mat-form-field>
+        </div>
 
-        <mat-form-field class="example-full-width" floatLabel="never">
-          <input matInput [formControl]="userIdFormControl" [type]="hideUserName ? 'password' : 'text'"
-            placeholder="請輸入使用者名稱">
-          <button type="button" mat-icon-button matSuffix (click)="hideUserName = !hideUserName"
+        <div>
+          <mat-form-field class="example-full-width" floatLabel="never" style="width: 85%;">
+            <input matInput [formControl]="userIdFormControl" [type]="hideUserName ? 'password' : 'text'"
+              placeholder="請輸入使用者名稱">
+            <mat-error
+              *ngIf=" userIdFormControl.hasError('required') ||userIdFormControl.hasError('minlength')||userIdFormControl.hasError('maxlength')">
+              <strong>請輸入6-20碼英數符號</strong>
+            </mat-error>
+          </mat-form-field>
+          <button class="form-button" type="button" mat-icon-button matSuffix (click)="hideUserName = !hideUserName"
             [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideUserName">
             <mat-icon>{{hideUserName ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <button type="button" mat-icon-button matSuffix href="javascript:void(0)" (click)="openDialog(3)">
+          <button class="form-button" type="button" mat-icon-button matSuffix href="javascript:void(0)"
+            (click)="openDialog(3)">
             <mat-icon>info</mat-icon>
           </button>
-          <mat-error
-            *ngIf=" userIdFormControl.hasError('required') ||userIdFormControl.hasError('minlength')||userIdFormControl.hasError('maxlength')">
-            <strong>請輸入6-20碼英數符號</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" floatLabel="never">
+        </div>
+
+        <mat-form-field class="example-full-width" floatLabel="never" style="width: 83%;">
           <input matInput [formControl]="pwFormControl" [type]="hidePW ? 'password' : 'text'" placeholder="請輸入密碼">
-          <button type="button" mat-icon-button matSuffix (click)="hidePW = !hidePW"
-          [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePW">
-          <mat-icon>{{hidePW ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
           <mat-error
             *ngIf=" pwFormControl.hasError('required') ||pwFormControl.hasError('minlength')||pwFormControl.hasError('maxlength')">
             <strong>請輸入8-12碼英數符號</strong>
           </mat-error>
         </mat-form-field>
+        <button type="button" mat-icon-button matSuffix (click)="hidePW = !hidePW" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidePW">
+          <mat-icon>{{hidePW ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
         <div fxFlexFill="row">
           <div fxFlex="65">
             <mat-checkbox class="example-margin" [checked]="(isCheckedRemAccount()|async)||false"
@@ -59,7 +66,7 @@
         </div>
       </mat-card-content>
       <button mat-stroked-button class="btn-block primary white-text" (click)="login()">登入</button>
-      <button mat-stroked-button class="btn-block cancel cancel-text"  routerLink="/settings">我要設定使用者名稱</button>
+      <button mat-stroked-button class="btn-block cancel cancel-text" routerLink="/settings">我要設定使用者名稱</button>
       <div fxFlexFill="row">
         <div fxFlex="50">
           <a class="left" href="https://test.com/register" target="blink">我要註冊<mat-icon>arrow_right</mat-icon>

@@ -103,4 +103,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
     });
   }
 
+  triggerHideAccount() {
+    this.hideAccount = !this.hideAccount;
+    let originalVal = this._elementRef.nativeElement.querySelector('.acc').getAttribute('originalVal') || '';
+
+    if (this.hideAccount) {
+      this._elementRef.nativeElement.querySelector('.acc').value = this.authService.disPlayAcc(originalVal);
+    } else {
+      this._elementRef.nativeElement.querySelector('.acc').value = originalVal;
+    }
+
+  }
 }
