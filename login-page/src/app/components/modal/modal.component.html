@@ -16,7 +16,7 @@
   </div>
   <div *ngSwitchCase="3">
     <div fxFlex="50" class="cancel link" (click)="closeFirstLogin()" style="margin: revert;">
-      <p style="margin: revert;" class="center white-text">關閉</p>
+      <p style="margin: revert;" class="center cancel-text">關閉</p>
     </div>
     <div fxFlex="50" class="primary link" routerLink="/settings" (click)="closeFirstLogin()">
       <p style="margin: revert;" class="center white-text">前往設定</p>
@@ -29,7 +29,7 @@
   </div>
   <div *ngSwitchCase="5">
     <div fxFlex="50" class="cancel link" (click)="close()" style="margin: revert;">
-      <p style="margin: revert;" class="center white-text">下次再換</p>
+      <p style="margin: revert;" class="center cancel-text">下次再換</p>
     </div>
     <div fxFlex="50" class="primary link" (click)="close()" routerLink="/settingpassword">
       <p style="margin: revert;" class="center white-text">密碼變更</p>
@@ -37,7 +37,7 @@
   </div>
   <div *ngSwitchCase="6">
     <div fxFlex="50" class="cancel link" (click)="closeAndRemainAcc()" style="margin: revert;">
-      <p style="margin: revert;" class="center white-text">取消</p>
+      <p style="margin: revert;" class="center cancel-text">取消</p>
     </div>
     <div fxFlex="50" class="primary link" (click)="closeAndResetLogin()">
       <p style="margin: revert;" class="center white-text">確定</p>
@@ -45,7 +45,7 @@
   </div>
   <div *ngSwitchCase="7">
     <div fxFlex="50" class="cancel link" (click)="closeAndRemainAccColumn()" style="margin: revert;">
-      <p style="margin: revert;" class="center white-text">取消</p>
+      <p style="margin: revert;" class="center cancel-text">取消</p>
     </div>
     <div fxFlex="50" class="primary link" (click)="closeAndResetLogin()">
       <p style="margin: revert;" class="center white-text">確定</p>
