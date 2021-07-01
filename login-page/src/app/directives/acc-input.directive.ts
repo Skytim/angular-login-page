@@ -11,9 +11,7 @@ export class AccInputDirective {
   }
   @HostListener("focus", ["$event.target.value"])
   onFocus(value: any) {
-    // on focus remove currency formatting
     this.el.value = this.el.getAttribute('originalVal') || '';
-    this.el.select();
   }
 
   @HostListener("blur", ["$event.target.value"])
